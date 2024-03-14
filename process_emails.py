@@ -80,6 +80,7 @@ def process_email(service, message, delete_list, leave_list, read_list=[]):
                                 id_list = []
                         if len(id_list) > 0:
                             msg = service.users().messages().batchModify(userId='me', body={'ids':id_list, 'removeLabelIds': ['UNREAD']}).execute()
+                        print('Finished bulk read')
                         finished_processing = True
                         read_list.append(from_name)
                     elif user_choice == '3':
@@ -111,6 +112,7 @@ def process_email(service, message, delete_list, leave_list, read_list=[]):
                                 id_list = []
                         if len(id_list) > 0:
                             msg = service.users().messages().batchDelete(userId='me', body={'ids':id_list}).execute()
+                        print('Finished Bulk Deletion')
                         delete_list.append(from_name)
                         finished_processing = True
                         updated = True
